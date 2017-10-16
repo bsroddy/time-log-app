@@ -1,14 +1,17 @@
 #:kivy 1.0
 
 <EnterActivityScreen>:
-    orientation: vertical
+    orientation: 'vertical'
     Label:
         id: heading
-        text: "What are you doing?"
+        text: "What will you do?"
         size_hint: 1, .2
     ScrollView:
-        BoxLayout:
-            orientation: 'vertical'
+        GridLayout:
+            size_hint: 1, None
+            cols: 2
+            row_default_height: 50
+            height: self.minimum_height
             Button:
                 text: "activity"
             Button:
@@ -61,4 +64,23 @@
                 text: "activity"
             Button:
                 text: "activity"
-    
+            Button:
+                text: "activity"
+            Button:
+                text: "activity"
+            Button:
+                text: "activity"
+            Button:
+                text: "activity"
+            Button:
+                text: "activity"
+            Button:
+                text: "activity"
+            Button:
+                text: "activity"
+            Button:
+                text: "activity"
+            Button:
+                text: "activity"
+            Button:
+                text: "activity"
