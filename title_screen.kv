@@ -1,0 +1,20 @@
+#:kivy 1.0
+
+<TitleScreen>:
+    orientation: 'vertical'
+    Label:
+        id: heading
+        text: "Time Log App"
+        size_hint: 1, .4
+    ScrollView:
+        GridLayout:
+            size_hint: 1, None
+            cols: 1
+            row_default_height: 50
+            height: self.minimum_height
+            Button:
+                text: "Log an Activity"
+            Button:
+                text: "Add an Activity"
+            Button:
+                text: "View Activity Log"

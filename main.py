@@ -10,11 +10,16 @@ from kivy.config import Config
 class EnterActivityScreen(BoxLayout):
     pass
 
+class ActivityLogScreen(BoxLayout):
+    pass
 
-class enter_activity_screenApp(App):
+class TitleScreen(BoxLayout):
+    pass
+
+class title_screenApp(App):
     """The main app."""
     def build(self):
-        return EnterActivityScreen()
+        return TitleScreen()
 
 if __name__ == '__main__':
-    enter_activity_screenApp().run()
+    title_screenApp().run()
