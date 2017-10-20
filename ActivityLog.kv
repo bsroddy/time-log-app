@@ -24,7 +24,9 @@
                         text: "Add an Activity"
                     Button:
                         text: "View Activity Log"
+
                         on_release: sm.current = "Activity Log Screen"
+
 
     Screen:
         name: "Activity Log Screen"
@@ -41,6 +43,7 @@
                     text: "Back"
                     size_hint: .2, 1
                     on_release: sm.current = "Enter Activity Screen"
+
 
             ScrollView:
                 GridLayout:
@@ -99,6 +102,7 @@
         name: "Enter Activity Screen"
         BoxLayout:
             orientation: 'vertical'
+
             BoxLayout:
                 orientation: 'horizontal'
                 size_hint: 1, .2
@@ -111,6 +115,7 @@
                     size_hint: .2, 1
                     on_release: sm.current = "Title Screen"
 
+
             ScrollView:
                 GridLayout:
                     size_hint: 1, None
@@ -118,8 +123,10 @@
                     row_default_height: 50
                     height: self.minimum_height
                     Button:
+
                         text: "test go to log screen"
                         on_release: sm.current = "Activity Log Screen"
+
                     Button:
                         text: "activity"
                     Button:
