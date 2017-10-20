@@ -1,6 +1,8 @@
 #:kivy 1.0
 
 <ActivityLog>:
+    id: sm
+
     Screen:
         name: "Title Screen"
         BoxLayout:
@@ -17,19 +19,32 @@
                     height: self.minimum_height
                     Button:
                         text: "Log an Activity"
+                        on_release: sm.current = "Enter Activity Screen"
                     Button:
                         text: "Add an Activity"
                     Button:
                         text: "View Activity Log"
 
+                        on_release: sm.current = "Activity Log Screen"
+
+
     Screen:
         name: "Activity Log Screen"
         BoxLayout:
             orientation: 'vertical'
-            Label:
-                id: heading
-                text: "Activity Log"
+            BoxLayout:
+                orientation: 'horizontal'
                 size_hint: 1, .2
+                Label:
+                    id: heading
+                    text: "Activity Log"
+                    size_hint: .8, 1
+                Button:
+                    text: "Back"
+                    size_hint: .2, 1
+                    on_release: sm.current = "Enter Activity Screen"
+
+
             ScrollView:
                 GridLayout:
                     size_hint: 1, None
@@ -87,10 +102,20 @@
         name: "Enter Activity Screen"
         BoxLayout:
             orientation: 'vertical'
-            Label:
-                id: heading
-                text: "What will you do?"
+
+            BoxLayout:
+                orientation: 'horizontal'
                 size_hint: 1, .2
+                Label:
+                    id: heading
+                    text: "What will you do?"
+                    size_hint: .8, 1
+                Button:
+                    text: "Back"
+                    size_hint: .2, 1
+                    on_release: sm.current = "Title Screen"
+
+
             ScrollView:
                 GridLayout:
                     size_hint: 1, None
@@ -98,7 +123,10 @@
                     row_default_height: 50
                     height: self.minimum_height
                     Button:
-                        text: "activity"
+
+                        text: "test go to log screen"
+                        on_release: sm.current = "Activity Log Screen"
+
                     Button:
                         text: "activity"
                     Button:
