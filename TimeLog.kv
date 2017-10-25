@@ -1,0 +1,107 @@
+#:kivy 1.0
+
+<TimeLog>:
+    id: sm
+
+    Screen:
+        id: title_screen
+        name: "Title Screen"
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: heading
+                text: "Time Log App"
+                size_hint: 1, .4
+            ScrollView:
+                GridLayout:
+
+                    #This prevents enter_activity_popup from being garbage-collected:
+                    enter_activity_popup: enter_activity_popup.__self__
+                    id: title_screen_gridlayout
+                    size_hint: 1, None
+                    cols: 1
+                    row_default_height: 50
+                    height: self.minimum_height
+                    Popup:
+                        id: enter_activity_popup
+                        title: "Enter Activity Popup"
+                        on_parent:
+                            if self.parent == title_screen_gridlayout: self.parent.remove_widget(self)
+                        BoxLayout:
+                            orientation: 'vertical'
+                            TextInput:
+                                id: new_activity_input
+                                text: "activity"
+                            Button:
+                                text: "Add"
+                                on_release:
+                                    root.add_activity_to_list(new_activity_input.text)
+                                    root.clear_enter_activity_buttons()
+                                    root.populate_enter_activity_buttons()
+                                    
+                                    enter_activity_popup.dismiss()
+
+
+
+                    Button:
+                        text: "Log an Activity"
+                        on_release: sm.current = "Enter Activity Screen"
+                    Button:
+                        text: "Add an Activity"
+                        on_release: title_screen_gridlayout.enter_activity_popup.open()
+                    Button:
+                        text: "View Activity Log"
+                        on_release: sm.current = "Activity Log Screen"
+
+    Screen:
+        id: activity_log_screen
+        name: "Activity Log Screen"
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: 1, .2
+                Label:
+                    id: heading
+                    text: "Activity Log"
+                    size_hint: .8, 1
+                Button:
+                    text: "Back"
+                    size_hint: .2, 1
+                    on_release: sm.current = "Enter Activity Screen"
+
+            ScrollView:
+                GridLayout:
+                    id: activity_log
+                    size_hint: 1, None
+                    cols: 1
+                    row_default_height: 50
+                    height: self.minimum_height
+
+    Screen:
+        id: enter_activity_screen
+        name: "Enter Activity Screen"
+        BoxLayout:
+            id: enter_activity_screen_boxlayout
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: 1, .2
+                Label:
+                    id: heading
+                    text: "What will you do?"
+                    size_hint: .8, 1
+                Button:
+                    text: "Back"
+                    size_hint: .2, 1
+                    on_release: sm.current = "Title Screen"
+
+            ScrollView:
+                id: enter_activity_buttons_scrollview
+                GridLayout:
+                    id: enter_activity_buttons
+                    size_hint: 1, None
+                    cols: 2
+                    row_default_height: 50
+                    height: self.minimum_height
+

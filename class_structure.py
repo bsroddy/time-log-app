@@ -110,48 +110,29 @@ class Date():
 
 
 class ActivityLog():
-    """A list of logged activities."""
+    """A list of activities logged on a particular date."""
 
-    def __init__(self, log_entry_list):
-        """Initialize with log_entry_list (list of LogEntry) attribute."""
-        self.log_entry_list = log_entry_list
+    def __init__(self, date=None):
+        """Initialize with log_entry_list (list of LogEntry) attribute and optional date attribute."""
+        self.log_entry_list = []
+        self.date = date
 
     def get_log_entry_list(self):
-        """Returns list of LogEntry."""
+        """Returns list of LogEntry's."""
         return self.log_entry_list
 
     def add_log_entry(self, log_entry):
         """Takes LogEntry. Adds an entry to the activity log."""
         self.log_entry_list.append(log_entry)
 
-
-class Day():
-    """The standard unit for an active activity logging session."""
-
-    def __init__(self, activity_log, date, is_today):
-        """Initialize with activity_log (ActivityLog), date (Date), and is_today (boolean) attributes."""
-        self.activity_log = activity_log
-        self.date = date
-        self.is_today = is_today
-
-    def get_activity_log(self):
-        """Returns activity_log"""
-        return self.activity_log
+    def clear_log_entry_list(self):
+        """Clears the list of LogEntry's."""
+        del self.log_entry_list[:]
 
     def get_date(self):
-        """Returns date (Date)."""
+        """Returns this ActivityLog's Date--the date on which its activities took place."""
         return self.date
 
-    def update_date(self, new_date):
-        """Takes Date. Updates date."""
+    def set_date(self, new_date):
+        """Sets this ActivityLog's Date."""
         self.date = new_date
-
-    def is_today(self):
-        """Returns is_today (boolean)."""
-        return self.is_today
-
-    def update_is_today(self, new_is_today):
-        """Takes boolean. Updates is_today."""
-        self.date = new_is_today
-
-
