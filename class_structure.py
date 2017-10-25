@@ -112,10 +112,12 @@ class Date():
 class ActivityLog():
     """A list of activities logged on a particular date."""
 
+
     def __init__(self, date=None):
         """Initialize with log_entry_list (list of LogEntry) attribute and optional date attribute."""
         self.log_entry_list = []
         self.date = date
+
 
     def get_log_entry_list(self):
         """Returns list of LogEntry's."""
