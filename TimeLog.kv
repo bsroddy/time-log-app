@@ -31,13 +31,14 @@
                             orientation: 'vertical'
                             TextInput:
                                 id: new_activity_input
-                                text: "activity"
+                                text: ""
                             Button:
                                 text: "Add"
                                 on_release:
                                     root.add_activity_to_list(new_activity_input.text)
                                     root.clear_enter_activity_buttons()
                                     root.populate_enter_activity_buttons()
+                                    root.clear_new_activity_input_text()
                                     
                                     enter_activity_popup.dismiss()
 
@@ -78,7 +79,6 @@
                     row_default_height: 50
                     height: self.minimum_height
 
-
     Screen:
         id: enter_activity_screen
         name: "Enter Activity Screen"
@@ -105,5 +105,4 @@
                     cols: 2
                     row_default_height: 50
                     height: self.minimum_height
-
 
