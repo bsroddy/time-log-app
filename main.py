@@ -59,8 +59,16 @@ class TimeLog(ScreenManager):
         reversed_log_entry_list = self.activity_log.get_log_entry_list()[::-1]
         # list[::-1] is a copy of list in reverse order (special case of the slicing syntax)
         for log_entry in reversed_log_entry_list:
-            new_button = Button(text = log_entry.get_activity().get_name())
-            self.displayed_activity_log.add_widget(new_button)
+            activity_name_button = Button(text = log_entry.get_activity().get_name(), size_hint = (.8,1))
+            start_time_button = Button(text = '12:00', size_hint = (.1,1))
+            end_time_button = Button(text = '13:00', size_hint = (.1,1))
+            log_entry_boxlayout = BoxLayout(orientation = 'horizontal')
+
+            log_entry_boxlayout.add_widget(activity_name_button)
+            log_entry_boxlayout.add_widget(start_time_button)
+            log_entry_boxlayout.add_widget(end_time_button)
+
+            self.displayed_activity_log.add_widget(log_entry_boxlayout)
 
     def clear_displayed_activity_log(self, *args):
         self.displayed_activity_log.clear_widgets()
