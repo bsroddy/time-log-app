@@ -1,5 +1,6 @@
 import kivy
 
+import datetime
 from functools import partial
 
 from kivy.app import App
@@ -27,6 +28,7 @@ class TimeLog(ScreenManager):
         super(TimeLog, self).__init__(**kwargs)
         self.activity_log = ActivityLog()
         self.activity_list = []
+        self.ongoing_log_entry = None
         self.enter_activity_buttons = self.ids['enter_activity_buttons']
         self.new_activity_input = self.ids['new_activity_input']
         self.displayed_activity_log = self.ids['activity_log']
@@ -60,8 +62,10 @@ class TimeLog(ScreenManager):
         # list[::-1] is a copy of list in reverse order (special case of the slicing syntax)
         for log_entry in reversed_log_entry_list:
             activity_name_button = Button(text = log_entry.get_activity().get_name(), size_hint = (.8,1))
-            start_time_button = Button(text = '12:00', size_hint = (.1,1))
-            end_time_button = Button(text = '13:00', size_hint = (.1,1))
+            start_time_button = Button(text = self.format_datetime_for_activity_log_screen(log_entry.get_start_time()),\
+                                       size_hint = (.1,1))
+            end_time_button = Button(text = self.format_datetime_for_activity_log_screen(log_entry.get_end_time()),\
+                                     size_hint = (.1,1))
             log_entry_boxlayout = BoxLayout(orientation = 'horizontal')
 
             log_entry_boxlayout.add_widget(activity_name_button)
@@ -75,10 +79,27 @@ class TimeLog(ScreenManager):
 
     def log_activity(self, activity, *args):
         #To do: add time handling.
-        self.activity_log.add_log_entry(log_entry = LogEntry(activity, start_time = 0, end_time = 0))
+        start_datetime = datetime.datetime.now()
+        end_datetime = None
+
+        if self.ongoing_log_entry != None:
+            self.ongoing_log_entry.update_end_time(start_datetime)
+
+        new_log_entry = LogEntry(activity, start_time=start_datetime, end_time=end_datetime)
+
+        self.activity_log.add_log_entry(new_log_entry)
+
+        self.ongoing_log_entry = new_log_entry
+
+    def format_datetime_for_activity_log_screen(self, to_be_formatted):
+        if to_be_formatted == None:
+            return ""
+        else:
+            formatted_datetime = to_be_formatted.strftime("%H") + ":" + to_be_formatted.strftime("%M")
+            return formatted_datetime
 
     def clear_new_activity_input_text(self):
-        self.new_activity_input.text = ""
+            self.new_activity_input.text = ""
 
 
 
