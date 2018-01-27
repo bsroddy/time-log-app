@@ -1,6 +1,7 @@
 import time
 import datetime
 
+
 class Activity():
     """An activity that the user engages in and logs."""
 
@@ -44,7 +45,7 @@ class Time():
 
 
 class LogEntry():
-    """An entry into the day's activities."""
+    """An entry into the day's activities, including the beginning and ending times."""
 
     def __init__(self, activity, start_time, end_time):
         """Initialize with activity (Activity), start_time (Time), and end_time (Time) attributes."""
@@ -136,3 +137,94 @@ class ActivityLog():
     def set_date(self, new_date):
         """Sets this ActivityLog's Date."""
         self.date = new_date
+
+
+class HistoricalDay():
+    """The record of a past day's activities."""
+
+    def __init__(self, activity_log, day_of_the_week=None):
+        """Initialize with log_entry_list (list of LogEntry) attribute and optional day_of_the_week attribute."""
+        self.activity_log = activity_log
+        self.day_of_the_week = day_of_the_week
+
+    def get_activity_log(self):
+        """Returns activity_log."""
+        return self.activity_log
+
+    def set_activity_log(self, new_activity_log):
+        """Sets activity log."""
+        self.activity_log = new_activity_log
+
+    def get_day_of_the_week(self):
+        """Returns day of the week."""
+        return self.day_of_the_week
+
+    def set_day_of_the_week(self, new_day_of_the_week):
+        """Sets day_of_the_week."""
+        self.day_of_the_week = new_day_of_the_week
+
+
+class HistoricalMonth():
+    """The records of a month of HistoricalDays."""
+
+    def __init__(self, list_of_days, month_of_the_year=None):
+        """Initialize with list_of_days (list of HistoricalDay) attribute and optional month_of_the_year attribute."""
+        self.list_of_days = list_of_days
+        self.month_of_the_year = month_of_the_year
+
+    def get_list_of_days(self):
+        """Returns list_of_days."""
+        return self.list_of_days
+
+    def set_list_of_days(self, new_list_of_days):
+        """Sets list_of_days."""
+        self.list_of_days = new_list_of_days
+
+    def get_month_of_the_year(self):
+        """Returns month_of_the_year."""
+        return self.month_of_the_year
+
+    def set_month_of_the_year(self, new_month_of_the_year):
+        """Sets month_of_the_year."""
+        self.month_of_the_year = new_month_of_the_year
+
+
+class HistoricalYear():
+    """The records of a month of HistoricalDays."""
+
+    def __init__(self, list_of_months, year_number=None):
+        """Initialize with list_of_months (list of HistoricalMonth) attribute and optional year_number attribute."""
+        self.list_of_months = list_of_months
+        self.year_number = year_number
+
+    def get_list_of_months(self):
+        """Returns list_of_months."""
+        return self.list_of_months
+
+    def set_list_of_months(self, new_list_of_months):
+        """Sets list_of_months."""
+        self.list_of_months = new_list_of_months
+
+    def get_year_number(self):
+        """Returns year_number."""
+        return self.year_number
+
+    def set_year_number(self, new_year_number):
+        """Sets year_number."""
+        self.year_number = new_year_number
+
+
+class HistoricalCalendar():
+    """The records of a month of HistoricalDays."""
+
+    def __init__(self, list_of_years):
+        """Initialize with list_of_years (list of HistoricalYear)."""
+        self.list_of_years = list_of_years
+
+    def get_list_of_years(self):
+        """Returns list_of_years."""
+        return self.list_of_years
+
+    def set_list_of_years(self, new_list_of_years):
+        """Sets list_of_years."""
+        self.list_of_years = new_list_of_years
